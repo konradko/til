@@ -54,3 +54,11 @@ Create a swap file:
                     time.time() - pre_run_time
                 )
         )
+
+## Unable to find venv/lib/python2.7/config/Makefile / easy_install error: None / distutils error: None
+
+Get into that virtualenv and:
+
+    python -m pip uninstall pip setuptools
+    wget https://bootstrap.pypa.io/get-pip.py
+    python get-pip.py
