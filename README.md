@@ -62,3 +62,34 @@ Get into that virtualenv and:
     python -m pip uninstall pip setuptools
     wget https://bootstrap.pypa.io/get-pip.py
     python get-pip.py
+
+
+## Python decorator for logging uncaught exceptions and sending them to Sentry
+
+    from raven import Client
+    
+    // Change this to your Sentry client key
+    sentry_dsn = ''
+    
+    def send_uncaught_exceptions_to_sentry(func):
+        """
+        Decorator that sends exceptions to app.getsentry.com if SENTRY_DSN env var
+        is set.
+        """
+        def wrapped(*args, **kwargs):
+            try:
+                func(*args, **kwargs)
+            except:
+                if sentry_dsn:
+                    # prints traceback
+                    logging.exception("Exception occurred, sending to Sentry:")
+                    Client(dsn=sentry_dsn).captureException()
+                else:
+                    raise
+        return wrapped
+
+    // Usage:
+
+    @send_uncaught_exceptions_to_sentry
+    def test():
+        raise Exception('test')
