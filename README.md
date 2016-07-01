@@ -73,8 +73,7 @@ Get into that virtualenv and:
     
     def send_uncaught_exceptions_to_sentry(func):
         """
-        Decorator that sends exceptions to app.getsentry.com if SENTRY_DSN env var
-        is set.
+        Decorator that sends exceptions to app.getsentry.com
         """
         def wrapped(*args, **kwargs):
             try:
