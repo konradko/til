@@ -92,3 +92,26 @@ Get into that virtualenv and:
     @send_uncaught_exceptions_to_sentry
     def test():
         raise Exception('test')
+
+
+## sed: -e expression #1, char 13: unknown option to `s'
+
+The variable used in expression has slashes in it, change sed delimiter e.g.
+
+    export EXAMPLE_PATH=/tmp/
+    echo 'replace this' > file
+    sed -i "s/replace this/$EXAMPLE_PATH/" example.txt
+    sed: -e expression #1, char 13: unknown option to `s'
+
+Change to:
+    export EXAMPLE_PATH=/tmp/
+    echo 'replace this' > file
+    sed -i "s#replace this#$EXAMPLE_PATH#" example.txt
+    cat file
+    /tmp/
+
+
+## Load process (e.g. docker container) environment variables
+    
+    while read -d $'\0' ENV; do declare "$ENV"; done < /proc/<pid>/environ
+
