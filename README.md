@@ -115,3 +115,4 @@ Change to:
     
     while read -d $'\0' ENV; do declare "$ENV"; done < /proc/<pid>/environ
 
+## [Sending HTTP requests concurrently with Go](https://gist.github.com/konradko/1a8a6b09b2272163c4c971a686760cb7)
