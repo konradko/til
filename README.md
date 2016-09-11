@@ -121,3 +121,5 @@ Change to:
 
     logger = logging.getLogger()
     logger.addHandler(logging.StreamHandler())
+
+## [Python multiprocessing rotating file logger](https://gist.github.com/konradko/0d6dbf10e244aaea7e8e59037a8d18a3)
